@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Joke</h4>
+            {% if joke %}
+                <p class="card-text">{{ joke }}</p>
+            {% else %}
+                <p class="card-text">"When I wrote this code, only me and God knew how it works. Now only God knows...".</p>
+            {% endif %}    
+            <form method="POST">
+                {{ form.csrf_token }}
+    
+                {{ form.submit(class_="btn btn-primary btn-block btn-large")}}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% extends 'base.html'%}
+
+{% endblock%}

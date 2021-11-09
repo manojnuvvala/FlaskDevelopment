@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="../static/images/favicon.ico"/>
+    <title>7B LOL</title>
+    {% block styles %}
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <link rel="stylesheet" href="{{url_for('static', filename='css/stylesheet.css')}}">
+    {% endblock %}
+</head>
+<!-- <body style="background-image: url(http://getwallpapers.com/wallpaper/small-retina/e/1/1/478568.jpg);background-size: cover;background-repeat: no-repeat;"> -->
+<body>
+    {% block navbar %}
+      {% include "navbar.html" %}
+    {% endblock %}
+
+    {% block content %}
+
+    {% endblock%}
+
+   
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script> -->
+    
+  </body>
+  
+    
+
+</html>

@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">  
+    <div class="login">
+        <h1>Login to 😂</h1>
+        <div class="imgcontainer">
+            <img src="{{url_for('static', filename='images/sml.jpeg')}}" alt="Avatar" class="avatar">
+        </div>
+        <form method="POST">
+            {{ form.csrf_token }}
+
+            {{ form.email.label }}
+            {{ form.email }}
+
+            {{ form.password.label }}
+            {{ form.password }}
+
+            {{ form.submit(class_="btn btn-primary btn-block btn-large")}}
+        </form>
+        <div>
+            <a href="{{url_for('auth.register')}}">Register</a>
+        </div> 
+    </div>
+</div>
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock %}
+
+{% endblock%}
