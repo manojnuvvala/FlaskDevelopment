@@ -8,7 +8,14 @@ login_manager = LoginManager()
 login_manager.session_protection = "strong"
 login_manager.login_view = "auth.login"
 
-db = SQLAlchemy()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_POOL_SIZE "] = 20
+app.config["SQLALCHEMY_MAX_OVERFLOW"] = 100
+app.secret_key = 'secret string'
+db = SQLAlchemy(app)
+db.create_all()
 csrf_protection = CSRFProtect()
 
 
