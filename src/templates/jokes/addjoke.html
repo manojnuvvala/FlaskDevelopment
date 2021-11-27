@@ -8,6 +8,14 @@
         <div class="imgcontainer" >
             <img src="{{url_for('static', filename='images/sml.jpg')}}" alt="Avatar" class="avatar">
         </div>
+
+        <form action="{{url_for('auth.jokesubmited')}}" method="post">
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
+            {{ form.jokestring }}
+            {{ form.submit }}
+        </form>
+
         
 
   </div>
