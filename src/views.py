@@ -5,12 +5,13 @@ from flask import (
     request,
     redirect,
     Blueprint,
+    session,
     render_template,
 )
 from flask_login import login_required, login_user, logout_user, current_user
 
 from .models import User, Joke
-from .forms import JokeForm, RegistrationForm, LoginForm
+from .forms import JokeForm, JokeFormdata, RegistrationForm, LoginForm
 from .utils import is_safe_url
 
 
@@ -64,12 +65,30 @@ def login():
 def dashboard():
     form = JokeForm()
     if form.validate_on_submit():
-        joke = Joke.get_random_joke().joke
+        if form.submit.data:
+            joke = Joke.get_random_joke().joke
 
-        return render_template("jokes/dashboard.html", form=form, joke=joke)
-
+            return render_template("jokes/dashboard.html", form=form, joke=joke)
+        if form.another.data:
+            form=JokeFormdata()
+            return render_template("jokes/addjoke.html",form=form)
     return render_template("jokes/dashboard.html", form=form)
 
+@app.route("/submited", methods=["POST", "GET"])
+@login_required
+def jokesubmited():
+    form = JokeFormdata()
+    if form.validate_on_submit():
+        #user_id = session["user_id"]
+        #print(user_id)
+        print(current_user.id)
+        formdata = Joke(joke=form.jokestring.data, user_id = current_user.id)
+        db.session.add(formdata)
+        db.session.commit()
+        #formdata.save_joke()
+        flash("Joke registered successfully")
+
+        return redirect(url_for("auth.home"))
 
 @app.route("/logout")
 @login_required
@@ -77,3 +96,4 @@ def logout():
     logout_user()
 
     return redirect(url_for("auth.home"))
+
