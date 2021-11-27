@@ -31,3 +31,4 @@ class LoginForm(FlaskForm):
 
 class JokeForm(FlaskForm):
     submit = SubmitField("Get Another Joke")
+    another = SubmitField("ADD A Joke")
