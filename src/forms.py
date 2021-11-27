@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import ValidationError
-from wtforms.validators import Required, Email, EqualTo
+from wtforms.validators import Required, Email, EqualTo,DataRequired
 from wtforms import StringField, PasswordField, SubmitField
 
 from .models import User
@@ -32,3 +32,7 @@ class LoginForm(FlaskForm):
 class JokeForm(FlaskForm):
     submit = SubmitField("Get Another Joke")
     another = SubmitField("ADD A Joke")
+
+class JokeFormdata(FlaskForm):
+    jokestring = StringField('Enter the joke?', validators=[DataRequired()])
+    submit = SubmitField('Submit')
