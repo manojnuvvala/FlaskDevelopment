@@ -9,7 +9,7 @@ from flask import (
     render_template,
 )
 from flask_login import login_required, login_user, logout_user, current_user
-
+from src.app import db
 from .models import User, Joke
 from .forms import JokeForm, JokeFormdata, RegistrationForm, LoginForm
 from .utils import is_safe_url
