@@ -3,7 +3,7 @@ from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 
-
+import os
 login_manager = LoginManager()
 login_manager.session_protection = "strong"
 login_manager.login_view = "auth.login"
@@ -16,7 +16,7 @@ def create_app():
 
     app = Flask(__name__)
     #app.config.from_pyfile("config.py")
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost/flaskjoke'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SQLALCHEMY_POOL_SIZE "] = 20
     app.config["SQLALCHEMY_MAX_OVERFLOW"] = 100
