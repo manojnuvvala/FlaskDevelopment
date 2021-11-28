@@ -26,7 +26,7 @@ def create_app():
 
     app = Flask(__name__)
     #app.config.from_pyfile("config.py")
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    app.config['SQLALCHEMY_DATABASE_URI'] = uri
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SQLALCHEMY_POOL_SIZE "] = 20
     app.config["SQLALCHEMY_MAX_OVERFLOW"] = 100
